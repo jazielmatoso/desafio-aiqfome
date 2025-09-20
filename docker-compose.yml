@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_HOST: 0.0.0.0
+      POSTGRES_DB: aiqfome
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: magalu87
+      POSTGRES_PORT: 3452
+    ports:
+      - '3452:5432'
+    volumes:
+      - db_data:/data/db
+
+volumes:
+  db_data:
