@@ -43,15 +43,15 @@ Aqui estão os endpoints da sua API formatados em Markdown, prontos para você c
 ### Endpoints da API
 
 ### API Endpoints
-
-| Category | Method | Endpoint | Description | Requires Authentication |
-| :--- | :--- | :--- | :--- | :--- |
-| **Auth** | `POST` | `/v1/auth/login` | Logs in a client. | No |
-| **Clients** | `POST` | `/v1/clients` | Creates a new client. | No |
-| | `GET` | `/v1/clients` | Returns a list of all clients. | Yes |
-| | `GET` | `/v1/clients/:id` | Returns a specific client by ID. | Yes |
-| | `PUT` | `/v1/clients/:id` | Updates a client's data. | Yes |
-| | `DELETE` | `/v1/clients/:id` | Deletes a client by ID. | Yes |
-| | `POST` | `/v1/clients/:id/favorites` | Adds a product to a client's favorites list. | No |
-| **Products** | `GET` | `/v1/products` | Returns a list of all products. | No |
 ```
+
+| Category     | Method   | Endpoint                    | Description                                  | Requires Authentication |
+| :----------- | :------- | :-------------------------- | :------------------------------------------- | :---------------------- |
+| **Auth**     | `POST`   | `/v1/auth/login`            | Logs in a client.                            | No                      |
+| **Clients**  | `POST`   | `/v1/clients`               | Creates a new client.                        | No                      |
+|              | `GET`    | `/v1/clients`               | Returns a list of all clients.               | Yes                     |
+|              | `GET`    | `/v1/clients/:id`           | Returns a specific client by ID.             | Yes                     |
+|              | `PUT`    | `/v1/clients/:id`           | Updates a client's data.                     | Yes                     |
+|              | `DELETE` | `/v1/clients/:id`           | Deletes a client by ID.                      | Yes                     |
+|              | `POST`   | `/v1/clients/:id/favorites` | Adds a product to a client's favorites list. | No                      |
+| **Products** | `GET`    | `/v1/products`              | Returns a list of all products.              | No                      |
