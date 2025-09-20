@@ -47,5 +47,5 @@ $ yarn run start:dev
 |              | `GET`    | `/v1/clients/:id`           | Returns a specific client by ID.             | Yes                     |
 |              | `PUT`    | `/v1/clients/:id`           | Updates a client's data.                     | Yes                     |
 |              | `DELETE` | `/v1/clients/:id`           | Deletes a client by ID.                      | Yes                     |
-|              | `POST`   | `/v1/clients/:id/favorites` | Adds a product to a client's favorites list. | No                      |
-| **Products** | `GET`    | `/v1/products`              | Returns a list of all products.              | No                      |
+|              | `POST`   | `/v1/clients/:id/favorites` | Adds a product to a client's favorites list. | Yes                     |
+| **Products** | `GET`    | `/v1/products`              | Returns a list of all products.              | Yes                     |
