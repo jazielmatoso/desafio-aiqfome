@@ -1,6 +1,6 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The aiqfome project is a monolith developed in NodeJS using the NestJS framework. It uses Docker and Docker Compose to initialize a Postgres database. The concepts of Clean Architecture, Solid, and Clean Code were used throughout the project. I created a monolith due to the small size of the project.
 
 ## Project setup
 
@@ -23,44 +23,35 @@ $ yarn run start:dev
 
 ```
 
-````
+```
 
-## Deployment
+## Documentation
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
 
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-````
+# API Endpoints
+- The API is divided into three main sections: Auth, Clients, and Products.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+# 1. Auth (Authentication)
+- Manages client login, providing an access token for protected routes.
+Com certeza! Usar a sintaxe **Markdown** é a maneira mais comum e eficiente de criar tabelas e listas em arquivos README, pois ela é suportada por todas as plataformas como GitHub, GitLab, e Bitbucket, sem a necessidade de tags HTML.
 
-## Resources
+Aqui estão os endpoints da sua API formatados em Markdown, prontos para você copiar e colar.
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Endpoints da API
 
-## Support
+### API Endpoints
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+| Category | Method | Endpoint | Description | Requires Authentication |
+| :--- | :--- | :--- | :--- | :--- |
+| **Auth** | `POST` | `/v1/auth/login` | Logs in a client. | No |
+| **Clients** | `POST` | `/v1/clients` | Creates a new client. | No |
+| | `GET` | `/v1/clients` | Returns a list of all clients. | Yes |
+| | `GET` | `/v1/clients/:id` | Returns a specific client by ID. | Yes |
+| | `PUT` | `/v1/clients/:id` | Updates a client's data. | Yes |
+| | `DELETE` | `/v1/clients/:id` | Deletes a client by ID. | Yes |
+| | `POST` | `/v1/clients/:id/favorites` | Adds a product to a client's favorites list. | No |
+| **Products** | `GET` | `/v1/products` | Returns a list of all products. | No |
+```
