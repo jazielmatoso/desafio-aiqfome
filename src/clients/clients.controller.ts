@@ -8,27 +8,29 @@ import {
   Post,
   Put,
   Query,
-  // UseGuards,
+  UseGuards,
   Version,
 } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { ClientsService } from '@clients/clients.service';
-//import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 import {
   AddProductFavoriteDto,
   CreateClientDto,
   FindAllClientsDto,
   UpdateClientDto,
 } from './dto';
+import { Public } from '@auth/constants';
 
 @Controller('clients')
-//@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class ClientsController {
   constructor(private clientsService: ClientsService) {}
 
   @Post()
   @Version('1')
   @ApiResponse({ status: HttpStatus.CREATED })
+  @Public()
   async create(@Body() data: CreateClientDto): Promise<void> {
     await this.clientsService.create(data);
   }

@@ -4,7 +4,6 @@ import { AppLogger } from '@src/shared/logger';
 import { Equal, Like, Repository } from 'typeorm';
 import { CreateClientDto, FindAllClientsDto } from '@clients/dto';
 import { Client } from '@clients/entities';
-import { AuthLoginDto } from '../auth/dto';
 
 @Injectable()
 export class ClientsRepository {
@@ -42,12 +41,6 @@ export class ClientsRepository {
 
   async getClientByEmail(email: string): Promise<Client | null> {
     return await this.repository.findOne({ where: { email } });
-  }
-
-  async getClientByCredentials(
-    credentials: AuthLoginDto,
-  ): Promise<Client | null> {
-    return await this.repository.findOne({ where: credentials });
   }
 
   async findAll(input: FindAllClientsDto): Promise<Client[]> {
@@ -95,10 +88,19 @@ export class ClientsRepository {
     productApiId: number,
   ): Promise<boolean> {
     const rows = await this.repository
-      .createQueryBuilder('product')
-      .innerJoin('client.product', 'client')
-      .where('cliente.id = :clientId', { clientId })
-      .andWhere('produto.apiId = :productApiId', { productApiId })
+      .createQueryBuilder('clients')
+      .innerJoin(
+        'clients_products_products',
+        'clients_products',
+        'clients.id = clients_products.clientsId ',
+      )
+      .innerJoin(
+        'products',
+        'products',
+        'products.id = clients_products.productsId ',
+      )
+      .where('clients.id = :clientId', { clientId })
+      .andWhere('products.apiId = :productApiId', { productApiId })
       .getOne();
 
     return !!rows;

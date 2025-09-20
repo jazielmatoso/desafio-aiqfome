@@ -17,9 +17,10 @@ export const parseProductListApiToProductList = (
 
 export const parseProductApiToProduct = (input: ProductStoreApi): Product => {
   return {
-    id: input.id,
+    apiId: input.id,
     title: input.title,
     review: input.description,
+    price: input.price,
     image: input.image,
   } as Product;
 };

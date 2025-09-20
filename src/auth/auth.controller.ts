@@ -36,6 +36,6 @@ export class AuthController {
   })
   @ApiResponse({ status: HttpStatus.OK })
   async singOut(@Request() req): Promise<AuthLoginResponseDto> {
-    return req.logout();
+    return await req.logout();
   }
 }

@@ -16,6 +16,7 @@ import { ProductNotFoundException } from '@products/exceptions';
 import ProductsApiAdapter from '@adapters/products/products-api';
 import { ClientProductAlreadyExistsException } from './exceptions/client-product-altready-exists-exception';
 import { parseProductApiToProduct } from '../products/helpers/parser.helper';
+import { compare, generateHash } from '@shared/bcrypt';
 
 @Injectable()
 export class ClientsService {
@@ -28,6 +29,8 @@ export class ClientsService {
     if (await this.clientsRepository.getClientByEmail(client.email)) {
       throw new EmailClientAlreadyExistsException();
     }
+
+    client.password = await generateHash(client.password);
 
     await this.clientsRepository.create(client);
   }
@@ -60,25 +63,34 @@ export class ClientsService {
   }
 
   async login(credentials: AuthLoginDto): Promise<Client | null> {
-    return this.clientsRepository.getClientByCredentials(credentials);
+    const clientExists = await this.clientsRepository.getClientByEmail(
+      credentials.email,
+    );
+
+    if (!clientExists) {
+      return null;
+    }
+
+    if (!(await compare(credentials.password, clientExists.password))) {
+      return null;
+    }
+
+    return clientExists;
   }
 
   async addProductFavorite(
     id: number,
     input: AddProductFavoriteDto,
   ): Promise<void> {
-    //checka if o cliente existe
     const client = await this.clientsRepository.findOne(id);
     if (!client) {
       throw new ClientNotFoundException();
     }
 
-    //checkar se o cliente tem o produto
     if (await this.clientsRepository.clientHasProduct(id, input.productId)) {
       throw new ClientProductAlreadyExistsException();
     }
 
-    //checkar se existe o produto na api
     const productApi = await ProductsApiAdapter.getProductById(input.productId);
     if (!productApi) {
       throw new ProductNotFoundException();

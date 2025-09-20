@@ -16,5 +16,6 @@ import { ClientsModule } from '@clients/clients.module';
   ],
   providers: [AuthService, JwtStrategy, JwtAuthGuard],
   controllers: [AuthController],
+  exports: [JwtAuthGuard],
 })
 export class AuthModule {}

@@ -14,7 +14,6 @@ export class AuthService {
     credentials: AuthLoginDto,
   ): Promise<AuthLoginResponseDto> {
     const { email } = credentials;
-
     const client = await this.clientsService.login(credentials);
 
     if (!client) {

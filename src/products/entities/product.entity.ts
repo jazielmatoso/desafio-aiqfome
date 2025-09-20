@@ -4,7 +4,7 @@ import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity({ name: 'products', schema: 'public' })
 export class Product {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   title: string;
