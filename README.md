@@ -32,12 +32,6 @@ $ yarn run start:dev
 # API Endpoints
 - The API is divided into three main sections: Auth, Clients, and Products.
 
-# 1. Auth (Authentication)
-- Manages client login, providing an access token for protected routes.
-Com certeza! Usar a sintaxe **Markdown** é a maneira mais comum e eficiente de criar tabelas e listas em arquivos README, pois ela é suportada por todas as plataformas como GitHub, GitLab, e Bitbucket, sem a necessidade de tags HTML.
-
-Aqui estão os endpoints da sua API formatados em Markdown, prontos para você copiar e colar.
-
 ---
 
 ### Endpoints da API
