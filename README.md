@@ -28,6 +28,11 @@ $ yarn run start:dev
 ## Documentation
 
 
+# Swagger
+-  http://localhost:3000/docs
+
+# Postman collection
+- ./docs have an collection from postman
 
 # API Endpoints
 - The API is divided into three main sections: Auth, Clients, and Products.
