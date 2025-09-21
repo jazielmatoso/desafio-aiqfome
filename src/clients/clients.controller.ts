@@ -11,7 +11,7 @@ import {
   UseGuards,
   Version,
 } from '@nestjs/common';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { ClientsService } from '@clients/clients.service';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 import {
@@ -21,6 +21,7 @@ import {
   UpdateClientDto,
 } from './dto';
 import { Public } from '@auth/constants';
+import { getConstant } from '@src/constants';
 
 @Controller('clients')
 @UseGuards(JwtAuthGuard)
@@ -31,6 +32,10 @@ export class ClientsController {
   @Version('1')
   @ApiResponse({ status: HttpStatus.CREATED })
   @Public()
+  @ApiOperation({
+    summary: getConstant().DOCS.CLIENT_CREATE_SUMMARY,
+    description: getConstant().DOCS.CLIENT_CREATE_DESCRIPTION,
+  })
   async create(@Body() data: CreateClientDto): Promise<void> {
     await this.clientsService.create(data);
   }
@@ -38,6 +43,10 @@ export class ClientsController {
   @Get(':id')
   @Version('1')
   @ApiResponse({ status: HttpStatus.OK })
+  @ApiOperation({
+    summary: getConstant().DOCS.CLIENT_FINDONE_SUMMARY,
+    description: getConstant().DOCS.CLIENT_FINDONE_DESCRIPTION,
+  })
   async findOne(@Param('id') id: number): Promise<any> {
     return await this.clientsService.findOne(id);
   }
@@ -45,6 +54,10 @@ export class ClientsController {
   @Get()
   @Version('1')
   @ApiResponse({ status: HttpStatus.OK })
+  @ApiOperation({
+    summary: getConstant().DOCS.CLIENT_FINDALL_SUMMARY,
+    description: getConstant().DOCS.CLIENT_FINDALL_DESCRIPTION,
+  })
   async findAll(@Query() inputs: FindAllClientsDto): Promise<any> {
     return await this.clientsService.findAll(inputs);
   }
